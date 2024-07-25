@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -9,71 +9,58 @@ import {
   TouchableOpacity,
 } from "react-native";
 import RoundedButton from "../../components/RoundedButton";
-import { RootStackParamList } from "../../../App";
+import { RootStackParamList } from "../../../../App";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-
+import { useHomeViewModel } from "./ViewModel";
+import CustomTextInput from "../../components/CustomTextInput";
 
 export const HomeScreen = () => {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const { email, password, onChange } = useHomeViewModel();
 
   return (
     <View style={styles.container}>
       <Image
-        source={require("../../../assets/Logo.jpg")}
+        source={require("../../../../assets/Logo.jpg")}
         style={styles.imageBackground}
       />
       <View style={styles.logoContainer}>
         <Image
-          source={require("../../../assets/logo2.png")}
+          source={require("../../../../assets/logo2.png")}
           style={styles.logoImage}
         />
         <Text style={styles.logoText}>FOOD APP</Text>
       </View>
-
       <View style={styles.form}>
         <Text style={styles.formText}>INGRESAR</Text>
-        <View style={styles.formInput}>
-          <Image
-            style={styles.formIcon}
-            source={require("../../../assets/email.jpg")}
-          />
-          <TextInput
-            style={styles.formTextInput}
-            placeholder="Correo electrónico"
-            keyboardType="email-address"
-            value={email}
-            onChangeText={text => setEmail(text)}
-          />
-        </View>
-        <View style={styles.formInput}>
-          <Image
-            style={styles.formIcon}
-            source={require("../../../assets/password.jpeg")}
-          />
-          <TextInput
-            style={styles.formTextInput}
-            placeholder="Contraseña"
-            keyboardType="default"
-            secureTextEntry
-            value={password}
-            onChangeText={text => setPassword(text)}
-          />
-        </View>
-
+        <CustomTextInput
+          image={require("../../../../assets/email.jpg")}
+          placeholder="Correo electrónico"
+          keyboardType="email-address"
+          value={email}
+          onChangeText={(text) => onChange("email", text)}
+          property="email"
+        />
+        <CustomTextInput
+          image={require("../../../../assets/password.jpeg")}
+          placeholder="Contraseña"
+          keyboardType="default"
+          secureTextEntry
+          value={password}
+          onChangeText={(text) => onChange("password", text)}
+          property="password"
+        />
         <View style={{ marginTop: 30 }}>
           <RoundedButton
             text="ENTRAR"
             onPress={() => {
-                console.log(`Email: ${email}`)
-                console.log(`Password: ${password}`)
+              console.log(`Email: ${email}`);
+              console.log(`Password: ${password}`);
             }}
           />
         </View>
-
         <View style={styles.formRegister}>
           <Text>¿No tienes cuenta?</Text>
           <TouchableOpacity
