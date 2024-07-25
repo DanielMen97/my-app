@@ -1,11 +1,8 @@
-import React, { useState } from "react";
 import {
   View,
   Text,
   StyleSheet,
   Image,
-  TextInput,
-  ToastAndroid,
   TouchableOpacity,
 } from "react-native";
 import RoundedButton from "../../components/RoundedButton";
