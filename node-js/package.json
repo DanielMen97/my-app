@@ -1,0 +1,21 @@
+{
+  "name": "node-js",
+  "version": "1.0.0",
+  "description": "Backend de la app de adso",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ReactNative",
+    "NodeJS"
+  ],
+  "author": "Cristian Mendoza",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "morgan": "^1.10.0",
+    "mysql": "^2.18.1"
+  }
+}
