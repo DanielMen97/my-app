@@ -13,14 +13,6 @@ import CustomTextInput from "../../components/CustomTextInput";
 import styles from './Styles'
 
 export const RegisterScreen = () => {
-  const [userData, setUserData] = useState({
-    nombres: "",
-    apellidos: "",
-    email: "",
-    telefono: "",
-    password: "",
-    confirmPassword: "",
-  });
 
   const {
     onChange,

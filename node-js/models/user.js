@@ -1,6 +1,6 @@
-const mysql = require('../config/config');
-const User = {};
-User.create = (user, result) => {
+const db = require('../config/config');
+const User = {
+create: (user, result) => {
   const sql = `
   INSERT INTO users(
     email,
@@ -38,3 +38,6 @@ User.create = (user, result) => {
     }
   )
 }
+};
+
+module.exports = User;
