@@ -18,7 +18,7 @@ export const RegisterScreen = () => {
     onChange,
     register,
     name,
-    lastName,
+    lastname,
     email,
     phone,
     password,
@@ -56,8 +56,8 @@ export const RegisterScreen = () => {
           keyboardType="default"
           onChangeText={onChange}
           placeholder="Apellidos"
-          value={lastName}
-          property="lastName"
+          value={lastname}
+          property="lastname"
         />
 
         <CustomTextInput

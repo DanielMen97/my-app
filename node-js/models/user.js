@@ -2,14 +2,14 @@ const db = require('../config/config');
 const User = {
 create: (user, result) => {
   const sql = `
-  INSERT INTO users(
+  INSERT INTO user(
     email,
     name,
     lastname,
     phone,
     image,
     password,
-    create_at,
+    created_at,
     update_at
   )
   VALUES(?, ?, ?, ?, ?, ?, ?, ?)
@@ -19,7 +19,7 @@ create: (user, result) => {
     [
       user.email,
       user.name,
-      user.email,
+      user.lastname,
       user.phone,
       user.image,
       user.password,

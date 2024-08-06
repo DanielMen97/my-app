@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import { ApiDelivery } from '../../../../node-js/data/sources/remote/api/ApiDelivery';
+import { RegisterAuthUseCase } from '../../../Domain/useCases/AuthRepository';
 
 const useRegisterViewModel = () => {
 
   const [ values, setValues ] = useState({
     name: "",
-    lastName: "",
+    lastname: "",
     email: "",
     phone: "",
     password: "",
@@ -17,12 +18,9 @@ const useRegisterViewModel = () => {
   }
 
   const register = async () => {
-    try {
-      const response = await ApiDelivery.post('users/create', values);
-      console.log('Response: ', JSON.stringify(response))
-    } catch (error) {
-      console.log('Error: '+ error)
-    }
+     const { result, error } = await RegisterAuthUseCase(values);
+     console.log('result: ' + JSON.stringify(result))
+     console.log('error: ' + error) 
   }
 
   return {
