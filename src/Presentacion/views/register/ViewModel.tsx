@@ -59,7 +59,8 @@ const useRegisterViewModel = () => {
   return {
     ...values,
     onChange,
-    register
+    register,
+    errorMessage
   }
 }
 

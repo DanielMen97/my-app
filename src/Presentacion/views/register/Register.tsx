@@ -18,6 +18,7 @@ export const RegisterScreen = () => {
     phone,
     password,
     confirmPassword,
+    errorMessage
   } = useRegisterViewModel();
 
   useEffect(() => {
