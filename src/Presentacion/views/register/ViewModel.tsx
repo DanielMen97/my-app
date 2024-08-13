@@ -4,6 +4,8 @@ import { RegisterAuthUseCase } from '../../../Domain/useCases/AuthRepository';
 
 const useRegisterViewModel = () => {
 
+  const [errorMessage, setErrorMessage] = useState("")
+
   const [ values, setValues ] = useState({
     name: "",
     lastname: "",
@@ -17,10 +19,41 @@ const useRegisterViewModel = () => {
     setValues({...values, [property]: value})
   }
 
+  const isValidForm = (): boolean => {
+    if(values.name === '') {
+      setErrorMessage('El nombre es requerido')
+      return false
+    }
+    if(values.lastname === '') {
+      setErrorMessage('El apellido es requerido')
+      return false
+    }
+    if(values.email === '') {
+      setErrorMessage('El apellido es requerido')
+      return false;
+    }
+    if(values.phone === '') {
+      setErrorMessage('El celular es requerido')
+      return false
+    }
+    if(values.password === '') {
+      setErrorMessage('La contraseña es requerida')
+      return false
+    }
+    if(values.confirmPassword === '') {
+      setErrorMessage('La contraseña es requerida')
+      return false
+    }
+    return true
+  }
+
   const register = async () => {
-     const { result, error } = await RegisterAuthUseCase(values);
-     console.log('result: ' + JSON.stringify(result))
-     console.log('error: ' + error) 
+    if(!isValidForm()) {
+      const response = await RegisterAuthUseCase(values);
+      console.log(`Result ${JSON.stringify(response)}`)
+    }
+    const response = await RegisterAuthUseCase(values);
+     console.log('result: ' + JSON.stringify(response))
   }
 
   return {
