@@ -41,7 +41,7 @@ const useRegisterViewModel = () => {
       return false
     }
     if(values.confirmPassword === '') {
-      setErrorMessage('La contraseña es requerida')
+      setErrorMessage('La confirmación de la contraseña es requerida')
       return false
     }
     return true
