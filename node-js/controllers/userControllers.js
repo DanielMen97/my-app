@@ -3,7 +3,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const Keys = require("../config/keys");
 
-module.export = {
+module.exports = {
   login(req, res) {
     const email = req.body.email;
     const password = req.body.password;
@@ -20,7 +20,7 @@ module.export = {
         return res.status(401).json({
           success: false,
           message: "El email no existe en la base de datos",
-          error: err,
+          // error: err,
         });
       }
       const isPasswordValid = await bcrypt.compare(password, myUser.password);
@@ -28,7 +28,7 @@ module.export = {
         const token = jwt.sing({
           id:myUser.id,
           email: myUser.email,
-        }, Keys.secretOrkey, {});
+        }, Keys.secretOrKey, {});
 
         const data = {
           id: myUser.id,
@@ -53,9 +53,7 @@ module.export = {
       }
     });
   },
-};
 
-module.exports = {
   register(req, res) {
     const user = req.body;
     User.create(user, (err, data) => {
@@ -72,5 +70,5 @@ module.exports = {
         data: data,
       });
     });
-  },
+  }
 };

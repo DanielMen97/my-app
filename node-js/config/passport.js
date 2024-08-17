@@ -19,4 +19,4 @@ module.exports = (passport) => {
             return done(null, false);
         });
     }));
-};s
+};

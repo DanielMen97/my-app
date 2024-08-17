@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const User = {};
 User.findById = (id, result) => {
   const sql = `
-  SELECT id, email, name, lastname, image, password, image, password FROM users WHERE id = ?`;
+  SELECT id, email, name, lastname, image, password, image, password FROM user WHERE id = ?`;
   db.query(sql,
     [id], (err, user) =>{
       if(err){
@@ -19,7 +19,7 @@ User.findById = (id, result) => {
 
 User.findByEmail = (email, result) => {
   const sql = `
-  SELECT id, email, name, lastname, image, password, image, password FROM users WHERE email = ?`;
+  SELECT id, email, name, lastname, image, password, image, password FROM user WHERE email = ?`;
   db.query(sql,
     [email], (err, user) =>{
       if(err){
