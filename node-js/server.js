@@ -16,14 +16,14 @@ app.use(cors());
 app.use(passport.initialize());
 app.use(passport.session());
 
-require('./config/passport');
+require('./config/passport')(passport);
 app.disable('x-powered-by')
 
 app.set('port', port);
 //Llamado de rutas
 userRoutes(app);
 //Directorio ip v4 de la maquina, consultar con Ipconfig;
-server.listen(3000,'192.168.1.39' || 'localhost', function(){
+server.listen(port,'192.168.1.39' || 'localhost', function(){
   console.log(`Aplicación de NodeJS ${process.pid} inicio en el puerto ${server.address().address} : ${server.address().port}`)
 })
 
