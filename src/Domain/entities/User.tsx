@@ -2,8 +2,9 @@ export interface User {
   id?: string | number;
   name: string;
   lastname: string;
-  email: string;
   phone: string;
+  email: string;
   password: string;
   confirmPassword: string;
+  session_token?: string;
 }

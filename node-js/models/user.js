@@ -22,11 +22,12 @@ User.findByEmail = (email, result) => {
   SELECT id, email, name, lastname, image, password, image, password FROM user WHERE email = ?`;
   db.query(sql,
     [email], (err, user) =>{
+      // console.log(user)
       if(err){
         console.log(`Error al consultar: ${err}`)
       }
       else{
-        console.log(`Usuario consultado: ${user[0]}`);
+        console.log('Usuario consultado: ', user[0]);
         result(null, user[0]);
       }
     }

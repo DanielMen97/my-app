@@ -3,19 +3,34 @@ import {
   Text,
   Image,
   TouchableOpacity,
+  ToastAndroid,
 } from "react-native";
 import RoundedButton from "../../components/RoundedButton";
 import { RootStackParamList } from "../../../../App";
-import { useNavigation } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
+import { StackScreenProps } from "@react-navigation/stack";
 import { useHomeViewModel } from "./ViewModel";
 import CustomTextInput from "../../components/CustomTextInput";
 import styles from './Styles'
+import { useEffect } from "react";
 
-export const HomeScreen = () => {
-  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
+interface Props extends StackScreenProps<RootStackParamList, 
+'HomeScreen'>{};
 
-  const { email, password, onChange } = useHomeViewModel();
+export const HomeScreen = ({navigation, route}: Props) => {
+
+  const { email, password, onChange, errorMessage, login, user } = useHomeViewModel();
+
+  useEffect(() => {
+    if(errorMessage !== ''){
+      ToastAndroid.show(errorMessage, ToastAndroid.LONG)
+    }
+  },[errorMessage])
+
+  useEffect(() => {
+    if (user?.id !== null && user?.id !== undefined) {
+      navigation.replace('ProfileInfoScreen');
+      }   
+  },[user])
 
   return (
     <View style={styles.container}>
@@ -37,7 +52,7 @@ export const HomeScreen = () => {
           placeholder="Correo electrónico"
           keyboardType="email-address"
           value={email}
-          onChangeText={(text) => onChange("email", text)}
+          onChangeText={onChange}
           property="email"
         />
         <CustomTextInput
@@ -46,16 +61,17 @@ export const HomeScreen = () => {
           keyboardType="default"
           secureTextEntry
           value={password}
-          onChangeText={(text) => onChange("password", text)}
+          onChangeText={onChange}
           property="password"
         />
         <View style={{ marginTop: 30 }}>
           <RoundedButton
             text="ENTRAR"
-            onPress={() => {
-              console.log(`Email: ${email}`);
-              console.log(`Password: ${password}`);
-            }}
+            onPress={() => login().then((data) => {
+              if(data){
+                navigation.navigate("ProfileInfoScreen")
+              }
+            })}
           />
         </View>
         <View style={styles.formRegister}>

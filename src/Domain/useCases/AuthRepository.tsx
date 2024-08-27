@@ -1,7 +1,7 @@
-import { AutoRepositoryImpl } from "../../../node-js/data/repositories/AuthRepository";
+import { AuthRepositoryImpl } from "../../../node-js/data/repositories/AuthRepository";
 import { User } from "../entities/User";
 
-const { register } = new AutoRepositoryImpl();
+const { register } = new AuthRepositoryImpl();
 
 export const RegisterAuthUseCase = async (user: User) => {
   return await register(user)
